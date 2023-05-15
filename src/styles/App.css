@@ -1,0 +1,13 @@
+#root {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
+}
+
+.action-buttons {
+	padding: 0.5rem;
+	display: flex;
+	justify-content: center;
+	gap: 0.5rem;
+}
