@@ -23,7 +23,9 @@ export default function LanguageContextProvider({ children }: ProviderProps) {
 
 	return (
 		<LanguageContext.Provider value={{ currentLanguage, changeLanguage }}>
-			{children}
+			<div className="flex justify-center gap-4 p-2 mx-auto border-4 rounded-xl h-96">
+				{children}
+			</div>
 		</LanguageContext.Provider>
 	);
 }

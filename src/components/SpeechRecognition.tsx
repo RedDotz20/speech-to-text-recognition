@@ -1,32 +1,12 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
+import { useSpeechRecognition } from 'react-speech-recognition';
+import { Button, Box, Text, Icon } from '@chakra-ui/react';
+import { BsFillClipboardFill, BsPenFill } from 'react-icons/Bs';
 import copy from 'clipboard-copy';
-import SpeechRecognition, {
-	useSpeechRecognition,
-} from 'react-speech-recognition';
-import { BiMicrophone, BiMicrophoneOff } from 'react-icons/BI';
-import { LanguageContext } from '../context/LanguageContext';
 
 function SpeechRecognitionApp() {
-	const { listening, transcript, resetTranscript } = useSpeechRecognition();
-	const { currentLanguage } = useContext<any>(LanguageContext);
-
+	const { listening, transcript } = useSpeechRecognition();
 	const [copied, setCopied] = useState(false);
-
-	const triggerActions = () => {
-		if (!listening) {
-			setCopied(false);
-			return SpeechRecognition.startListening({
-				continuous: true,
-				language: currentLanguage.value,
-			});
-		}
-		return SpeechRecognition.stopListening();
-	};
-
-	const resetTranscriptText = () => {
-		setCopied(false);
-		resetTranscript();
-	};
 
 	const handleCopy = async (textToCopy: string) => {
 		try {
@@ -38,38 +18,32 @@ function SpeechRecognitionApp() {
 	};
 
 	return (
-		<>
-			<div
-				className={`flex gap-2 items-center text-white p-4 rounded-full transition-all duration-300 delay-100 min-w-min ${
-					listening ? 'bg-green-700' : 'bg-red-700'
-				}`}
+		<Box className="relative flex flex-col p-2 border-2 rounded-lg min-w-[500px] max-w-[500px]">
+			<Box className="absolute flex items-center gap-2 top-2 left-6">
+				<Icon
+					as={BsPenFill}
+					boxSize={3}
+				/>
+				<Text fontWeight={700}>Transcript</Text>
+			</Box>
+			<Button
+				colorScheme={copied ? 'green' : 'gray'}
+				variant={copied ? 'solid' : 'outline'}
+				position="absolute"
+				top={2}
+				right={2}
+				px="2"
+				py="1"
+				fontSize="0.75rem"
+				size="xs"
+				leftIcon={<BsFillClipboardFill />}
+				disabled={listening || transcript === ''}
+				onClick={() => handleCopy(transcript)}
 			>
-				{listening ? <BiMicrophone size={40} /> : <BiMicrophoneOff size={40} />}
-				<span className="pr-2 text-xl">
-					{!listening ? 'MICROPHONE' : 'LISTENING ...'}
-				</span>
-			</div>
-
-			<div className="action-buttons">
-				<button
-					onClick={() => triggerActions()}
-					className="flex items-center gap-2 p-2 px-4 text-white bg-red-700 rounded-full"
-				>
-					<span className="text-lg">{!listening ? 'START' : 'STOP'}</span>
-				</button>
-				<button onClick={() => resetTranscriptText()}>Reset</button>
-			</div>
-
-			<div>
-				<button
-					disabled={listening || transcript === ''}
-					onClick={() => handleCopy(transcript)}
-				>
-					{copied ? 'Copied!' : 'Copy to Clipboard'}
-				</button>
-				<p>{transcript}</p>
-			</div>
-		</>
+				{copied ? 'Copied!' : 'Copy to Clipboard'}
+			</Button>
+			<p className="mx-4 mt-8 text-left">{transcript}</p>
+		</Box>
 	);
 }
 
