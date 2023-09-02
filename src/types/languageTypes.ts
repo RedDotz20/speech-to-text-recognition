@@ -6,7 +6,7 @@ export interface languageTypes {
 		| 'Japanese'
 		| 'Korean'
 		| 'Latin'
-		| 'Mandarin Chinese'
+		| 'Chinese'
 		| 'Malaysian'
 		| 'Portuguese'
 		| 'Spanish (US)';

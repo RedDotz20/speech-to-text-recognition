@@ -1,12 +1,9 @@
 import { useContext } from 'react';
-import { LanguageContext } from '../context/LanguageContext';
-import { languageSupported } from '../constants/languageSupport';
-import { SpeechRecognitionContext } from '../context/SpeechRecognitionContext';
 import SpeechRecognition from 'react-speech-recognition';
-
 import {
 	Box,
 	Button,
+	IconButton,
 	Image,
 	Menu,
 	MenuButton,
@@ -14,9 +11,22 @@ import {
 	MenuList,
 	Text,
 } from '@chakra-ui/react';
-import { BsFillPauseFill, BsFillPlayFill } from 'react-icons/Bs';
+import { BsFillStopFill, BsFillPlayFill } from 'react-icons/Bs';
 import { RxReset } from 'react-icons/Rx';
 import { MdKeyboardArrowDown } from 'react-icons/Md';
+
+import { LanguageContext } from '../context/LanguageContext';
+import { languageSupported } from '../constants/languageSupport';
+import { SpeechRecognitionContext } from '../context/SpeechRecognitionContext';
+
+export default function MainControls() {
+	return (
+		<Box className="py-3 px-4 bg-[#fff] rounded-r-lg min-w-[210px]">
+			<LanguageSelector />
+			<SpeechControls />
+		</Box>
+	);
+}
 
 function LanguageSelector() {
 	const { currentLanguage, changeLanguage } = useContext<any>(LanguageContext);
@@ -61,7 +71,7 @@ function LanguageSelector() {
 					</Box>
 				</MenuButton>
 
-				<MenuList>
+				<MenuList minWidth={178}>
 					{languageSupported.map((language) => {
 						return (
 							<MenuItem
@@ -85,17 +95,15 @@ function LanguageSelector() {
 	);
 }
 
-type CopiedToClipboardProps = { isCopiedToClipboard: boolean };
-
-function SpeechControls({ isCopiedToClipboard }: CopiedToClipboardProps) {
+function SpeechControls() {
 	const { currentLanguage } = useContext<any>(LanguageContext);
-	const { listening, resetTranscript } = useContext<any>(
+	const { listening, resetTranscript, resetClipboard } = useContext<any>(
 		SpeechRecognitionContext
 	);
 
 	const triggerActions = () => {
 		if (!listening) {
-			// setCopied(false);
+			resetClipboard();
 			return SpeechRecognition.startListening({
 				continuous: true,
 				language: currentLanguage.value,
@@ -104,46 +112,59 @@ function SpeechControls({ isCopiedToClipboard }: CopiedToClipboardProps) {
 		return SpeechRecognition.stopListening();
 	};
 
-	return (
-		<Box className="flex gap-2">
-			<Button
-				onClick={() => triggerActions()}
-				colorScheme={!listening ? 'green' : 'red'}
-				leftIcon={
-					!listening ? (
-						<BsFillPlayFill size={20} />
-					) : (
-						<BsFillPauseFill size={20} />
-					)
-				}
-			>
-				<Text fontSize="lg">{!listening ? 'Start' : 'Stop'}</Text>
-			</Button>
+	const resetTranscription = () => {
+		resetClipboard();
+		resetTranscript();
+	};
 
-			<Button
-				onClick={() => resetTranscript()}
-				colorScheme="teal"
-				variant="solid"
-				leftIcon={
-					<RxReset
-						className="text-white"
-						size={20}
-					/>
-				}
-			>
-				<Text fontSize="lg">Reset</Text>
-			</Button>
-		</Box>
-	);
-}
-
-export default function MainControls({
-	isCopiedToClipboard,
-}: CopiedToClipboardProps) {
 	return (
-		<Box className="my-3 mr-4">
-			<LanguageSelector />
-			<SpeechControls isCopiedToClipboard={isCopiedToClipboard} />
+		<Box className="flex justify-around">
+			<Box className="flex flex-col items-center justify-center gap-2">
+				<Text
+					fontSize="lg"
+					fontWeight={500}
+				>
+					{!listening ? 'START' : 'STOP'}
+				</Text>
+				<IconButton
+					variant={!listening ? 'solid' : 'outline'}
+					aria-label="Start/Stop"
+					size="lg"
+					borderRadius={100}
+					onClick={() => triggerActions()}
+					colorScheme={!listening ? 'green' : 'red'}
+					icon={
+						!listening ? (
+							<BsFillPlayFill size={24} />
+						) : (
+							<BsFillStopFill size={24} />
+						)
+					}
+				/>
+			</Box>
+
+			<Box className="flex flex-col items-center justify-center gap-2">
+				<Text
+					fontSize="lg"
+					fontWeight={500}
+				>
+					RESET
+				</Text>
+				<IconButton
+					aria-label="Reset"
+					size="lg"
+					borderRadius={100}
+					onClick={() => resetTranscription()}
+					colorScheme="blue"
+					variant="solid"
+					icon={
+						<RxReset
+							className="text-white"
+							size={24}
+						/>
+					}
+				/>
+			</Box>
 		</Box>
 	);
 }

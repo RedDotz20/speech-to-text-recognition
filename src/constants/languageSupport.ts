@@ -16,7 +16,7 @@ export const languageSupported = [
 	{ value: 'ja', name: 'Japanese', flag: JapaneseFlag },
 	{ value: 'ko', name: 'Korean', flag: KoreanFlag },
 	{ value: 'la', name: 'Latin', flag: LatinFlag },
-	{ value: 'zh-CN', name: 'Mandarin Chinese', flag: MandarinChineseFlag },
+	{ value: 'zh-CN', name: 'Chinese', flag: MandarinChineseFlag },
 	{ value: 'ms-MY', name: 'Malaysian', flag: MalaysianFlag },
 	{ value: 'pt-PT', name: 'Portuguese', flag: PortugueseFlag },
 	{ value: 'es-US', name: 'Spanish', flag: SpanishFlag },

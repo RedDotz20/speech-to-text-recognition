@@ -20,10 +20,10 @@
     "clipboard-copy": "^4.0.1",
     "framer-motion": "^10.16.1",
     "react": "^18.2.0",
-    "react-audio-visual": "^1.0.4",
     "react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
-    "react-speech-recognition": "^3.10.0"
+    "react-speech-recognition": "^3.10.0",
+    "typeface-roboto": "^1.1.13"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
