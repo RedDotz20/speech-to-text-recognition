@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useMemo } from 'react';
 import { useSpeechRecognition } from 'react-speech-recognition';
 import copy from 'clipboard-copy';
 
@@ -21,17 +21,27 @@ export default function SpeechRecognitionProvider({ children }: ProviderProps) {
 
 	const resetClipboard = () => setIsCopiedToClipboard(false);
 
+	const speechRecogContextValue = useMemo(
+		() => ({
+			listening,
+			transcript,
+			resetTranscript,
+			isCopiedToClipboard,
+			handleCopyToClipboard,
+			resetClipboard,
+		}),
+		[
+			listening,
+			transcript,
+			resetTranscript,
+			isCopiedToClipboard,
+			handleCopyToClipboard,
+			resetClipboard,
+		]
+	);
+
 	return (
-		<SpeechRecognitionContext.Provider
-			value={{
-				listening,
-				transcript,
-				resetTranscript,
-				isCopiedToClipboard,
-				handleCopyToClipboard,
-				resetClipboard,
-			}}
-		>
+		<SpeechRecognitionContext.Provider value={speechRecogContextValue}>
 			{children}
 		</SpeechRecognitionContext.Provider>
 	);

@@ -15,5 +15,5 @@ export default {
 			gray: '#EEEEEE',
 		},
 	},
-	plugins: [require('tailwindcss-gradient')],
+	plugins: [],
 };
