@@ -3,7 +3,7 @@ import {
 	Button,
 	Flex,
 	HStack,
-	// Icon,
+	Icon,
 	Image,
 	Menu,
 	MenuButton,
@@ -12,7 +12,7 @@ import {
 	Stack,
 	Text,
 } from '@chakra-ui/react';
-// import { BsGlobeAmericas } from 'react-icons/Bs';
+import { PiGlobeLight } from 'react-icons/pi';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import { LanguageContext } from '../../context/LanguageContext';
@@ -36,7 +36,7 @@ export default function LanguageSelector() {
 				alignItems="center"
 				mb={2}
 			>
-				{/* <Icon as={BsGlobeAmericas} /> */}
+				<Icon as={PiGlobeLight} />
 				<Text
 					fontSize="md"
 					textAlign="left"

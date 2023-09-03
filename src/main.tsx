@@ -27,7 +27,9 @@ const customTheme = extendTheme({
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
-		<ErrorBoundery fallback={<h1>An Error Has Occured</h1>}>
+		<ErrorBoundery
+			fallback={<h1 className="errorBoundery">An Error Has Occured</h1>}
+		>
 			<ChakraProvider theme={customTheme}>
 				<App />
 			</ChakraProvider>
