@@ -13,7 +13,7 @@ import {
 	Text,
 } from '@chakra-ui/react';
 import { BsGlobeAmericas } from 'react-icons/Bs';
-import { MdKeyboardArrowDown } from 'react-icons/Md';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import { LanguageContext } from '../../context/LanguageContext';
 import { SpeechRecognitionContext } from '../../context/SpeechRecognitionContext';

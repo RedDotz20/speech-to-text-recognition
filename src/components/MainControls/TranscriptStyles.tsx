@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { HStack, Icon, Select, Stack, Text, VStack } from '@chakra-ui/react';
-import { AiOutlineFontSize } from 'react-icons/Ai';
+import { AiOutlineFontSize } from 'react-icons/ai';
 
 import { TranscriptContext } from '../../context/TranscriptContext';
 import { SpeechRecognitionContext } from '../../context/SpeechRecognitionContext';

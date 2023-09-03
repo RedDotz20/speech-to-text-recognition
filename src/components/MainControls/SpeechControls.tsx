@@ -10,8 +10,8 @@ import {
 	Icon,
 } from '@chakra-ui/react';
 import { BsFillPlayFill, BsFillStopFill } from 'react-icons/Bs';
-import { RxReset } from 'react-icons/Rx';
-import { AiFillControl } from 'react-icons/Ai';
+import { RxReset } from 'react-icons/rx';
+import { AiFillControl } from 'react-icons/ai';
 
 import { LanguageContext } from '../../context/LanguageContext';
 import { SpeechRecognitionContext } from '../../context/SpeechRecognitionContext';
