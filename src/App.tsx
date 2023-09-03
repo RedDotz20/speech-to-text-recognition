@@ -1,5 +1,5 @@
 import { useSpeechRecognition } from 'react-speech-recognition';
-import { Flex, Grid, Heading, Icon } from '@chakra-ui/react';
+import { Flex, Grid, Heading } from '@chakra-ui/react';
 // import { BsChatText } from 'react-icons/Bs';
 // import { HiOutlineMicrophone } from 'react-icons/Hi';
 
