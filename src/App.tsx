@@ -1,7 +1,7 @@
 import { useSpeechRecognition } from 'react-speech-recognition';
 import { Flex, Grid, Heading, Icon } from '@chakra-ui/react';
 import { BsChatText } from 'react-icons/Bs';
-import { HiOutlineMicrophone } from 'react-icons/Hi';
+// import { HiOutlineMicrophone } from 'react-icons/Hi';
 
 import SpeechRecognitionProvider from './context/SpeechRecognitionContext';
 import LanguageContextProvider from './context/LanguageContext';
@@ -53,11 +53,11 @@ function MainHeading() {
 				mr={2}
 			/>
 			<Heading size="lg">Speech To Text Recognition</Heading>
-			<Icon
+			{/* <Icon
 				as={HiOutlineMicrophone}
 				boxSize={8}
 				ml={1}
-			/>
+			/> */}
 		</Flex>
 	);
 }

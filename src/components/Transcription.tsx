@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Button, Box, Text, Icon, Stack, Flex } from '@chakra-ui/react';
-import { BsFillClipboardFill, BsPenFill } from 'react-icons/Bs';
-import { HiOutlineMicrophone } from 'react-icons/Hi';
+import { Button, Box, Text, Stack, Flex } from '@chakra-ui/react';
+// import { BsFillClipboardFill, BsPenFill } from 'react-icons/Bs';
+// import { HiOutlineMicrophone } from 'react-icons/Hi';
 
 import { SpeechRecognitionContext } from '../context/SpeechRecognitionContext';
 import { TranscriptContext } from '../context/TranscriptContext';
@@ -35,10 +35,10 @@ export default function Transcription() {
 					gap={2}
 					mx={2}
 				>
-					<Icon
+					{/* <Icon
 						as={BsPenFill}
 						boxSize={3}
-					/>
+					/> */}
 					<Text
 						fontWeight={700}
 						mr={2}
@@ -70,7 +70,7 @@ export default function Transcription() {
 									alignItems="center"
 									color="#fff"
 								>
-									<HiOutlineMicrophone />
+									{/* <HiOutlineMicrophone /> */}
 									<Text>Listening ...</Text>
 								</Flex>
 							</motion.div>
@@ -85,7 +85,7 @@ export default function Transcription() {
 					px={2}
 					py={1}
 					fontSize={12}
-					leftIcon={<BsFillClipboardFill />}
+					// leftIcon={<BsFillClipboardFill />}
 					isDisabled={listening || transcript === ''}
 					onClick={() => handleCopyToClipboard(transcript)}
 					size="xs"

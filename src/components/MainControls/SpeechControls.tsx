@@ -9,7 +9,7 @@ import {
 	Stack,
 	Icon,
 } from '@chakra-ui/react';
-import { BsFillPlayFill, BsFillStopFill } from 'react-icons/Bs';
+// import { BsFillPlayFill, BsFillStopFill } from 'react-icons/Bs';
 import { RxReset } from 'react-icons/rx';
 import { AiFillControl } from 'react-icons/ai';
 
@@ -72,13 +72,13 @@ export default function SpeechControls() {
 						borderRadius={100}
 						onClick={() => triggerActions()}
 						colorScheme={!listening ? 'green' : 'red'}
-						icon={
-							!listening ? (
-								<BsFillPlayFill size={24} />
-							) : (
-								<BsFillStopFill size={24} />
-							)
-						}
+						// icon={
+						// 	!listening ? (
+						// 		<BsFillPlayFill size={24} />
+						// 	) : (
+						// 		<BsFillStopFill size={24} />
+						// 	)
+						// }
 					/>
 				</VStack>
 
