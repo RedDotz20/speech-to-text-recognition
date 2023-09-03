@@ -1,15 +1,6 @@
 import { useContext } from 'react';
-import { AnimatePresence, motion, isValidMotionProp } from 'framer-motion';
-import {
-	Button,
-	Box,
-	Text,
-	Icon,
-	Stack,
-	Flex,
-	chakra,
-	shouldForwardProp,
-} from '@chakra-ui/react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Button, Box, Text, Icon, Stack, Flex } from '@chakra-ui/react';
 import { BsFillClipboardFill, BsPenFill } from 'react-icons/Bs';
 import { HiOutlineMicrophone } from 'react-icons/Hi';
 
@@ -21,11 +12,6 @@ export default function Transcription() {
 		useContext<any>(SpeechRecognitionContext);
 	const { selectedFontWeight, selectedFontSize } =
 		useContext<any>(TranscriptContext);
-
-	const ChakraBox = chakra(motion.div, {
-		shouldForwardProp: (prop) =>
-			isValidMotionProp(prop) || shouldForwardProp(prop),
-	});
 
 	return (
 		<Box
@@ -61,13 +47,12 @@ export default function Transcription() {
 					</Text>
 					<AnimatePresence mode="wait">
 						{listening && (
-							<ChakraBox
-								bg="green"
-								rounded="md"
+							<motion.div
+								style={{ backgroundColor: 'green', borderRadius: '8px' }}
 								initial="hidden"
 								animate="visible"
 								exit="hidden"
-								transition={{ duration: '0.5' }}
+								transition={{ duration: 0.5 }}
 								variants={{
 									hidden: { opacity: 0, x: 20 },
 									visible: { opacity: 1, x: 0 },
@@ -88,7 +73,7 @@ export default function Transcription() {
 									<HiOutlineMicrophone />
 									<Text>Listening ...</Text>
 								</Flex>
-							</ChakraBox>
+							</motion.div>
 						)}
 					</AnimatePresence>
 				</Flex>

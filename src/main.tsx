@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
-import { ChakraProvider, Heading, extendTheme } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import ErrorBoundery from './ErrorBoundery.tsx';
 
 const customTheme = extendTheme({
@@ -27,7 +27,7 @@ const customTheme = extendTheme({
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
-		<ErrorBoundery fallback={<Heading>An Error Has Occured</Heading>}>
+		<ErrorBoundery fallback={<h1>An Error Has Occured</h1>}>
 			<ChakraProvider theme={customTheme}>
 				<App />
 			</ChakraProvider>
