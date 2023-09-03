@@ -1,32 +1,41 @@
 // import { useSpeechRecognition } from 'react-speech-recognition';
-import { Box, Flex, Grid, Heading, Icon } from '@chakra-ui/react';
+import { Flex, Grid, Heading, Icon } from '@chakra-ui/react';
 import { BsChatText } from 'react-icons/Bs';
 import { HiOutlineMicrophone } from 'react-icons/Hi';
 
-import MainControls from './components/MainControls';
-import Transcription from './components/Transcription';
 import SpeechRecognitionProvider from './context/SpeechRecognitionContext';
 import LanguageContextProvider from './context/LanguageContext';
+import TranscriptContextProvider from './context/TranscriptContext';
+
+import MainControls from './components/MainControls';
+import Transcription from './components/Transcription';
 
 export default function App() {
 	// const { browserSupportsSpeechRecognition } = useSpeechRecognition();
 
-	// if (!browserSupportsSpeechRecognition) return <ErrorHeading />
+	// if (!browserSupportsSpeechRecognition) {
+	// 	return <ErrorHeading />
+	// }
 
 	return (
-		<Box
+		<Flex
 			as="main"
-			className="flex flex-col items-center justify-center min-h-screen"
+			direction="column"
+			alignItems="center"
+			justifyContent="center"
+			minH="100vh"
 		>
 			<MainHeading />
 
 			<SpeechRecognitionProvider>
 				<LanguageContextProvider>
-					<Transcription />
-					<MainControls />
+					<TranscriptContextProvider>
+						<Transcription />
+						<MainControls />
+					</TranscriptContextProvider>
 				</LanguageContextProvider>
 			</SpeechRecognitionProvider>
-		</Box>
+		</Flex>
 	);
 }
 

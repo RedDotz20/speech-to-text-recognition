@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import {
-	Box,
 	Button,
+	Flex,
+	HStack,
 	Icon,
 	Image,
 	Menu,
@@ -29,15 +30,11 @@ export default function LanguageSelector() {
 	};
 
 	return (
-		<Stack
-			direction="column"
-			alignItems="flex-start"
-			spacing={2}
-			marginBottom={4}
-		>
+		<Flex flexDirection="column">
 			<Stack
 				direction="row"
 				alignItems="center"
+				mb={2}
 			>
 				<Icon as={BsGlobeAmericas} />
 				<Text
@@ -57,7 +54,10 @@ export default function LanguageSelector() {
 					textAlign="left"
 					isDisabled={listening}
 				>
-					<Box className="flex items-center gap-2">
+					<HStack
+						alignItems="center"
+						spacing={2}
+					>
 						<Image
 							src={
 								languageSupported[
@@ -66,32 +66,36 @@ export default function LanguageSelector() {
 							}
 							alt={currentLanguage.name}
 							width={15}
-							className="my-auto"
+							my="auto"
 						/>
 						<Text>{currentLanguage.name}</Text>
-					</Box>
+					</HStack>
 				</MenuButton>
 
-				<MenuList minWidth={178}>
+				<MenuList minWidth={208}>
 					{languageSupported.map((language) => {
 						return (
 							<MenuItem
 								key={language.value}
 								onClick={() => changeLanguage(language.name, language.value)}
-								className="flex items-center gap-2"
 							>
-								<Image
-									src={language.flag}
-									alt={language.name}
-									width={13}
-									className="my-auto"
-								/>
-								<Text fontSize="sm">{language.name}</Text>
+								<HStack
+									alignItems="center"
+									spacing={2}
+								>
+									<Image
+										src={language.flag}
+										alt={language.name}
+										width={13}
+										my="auto"
+									/>
+									<Text fontSize="sm">{language.name}</Text>
+								</HStack>
 							</MenuItem>
 						);
 					})}
 				</MenuList>
 			</Menu>
-		</Stack>
+		</Flex>
 	);
 }

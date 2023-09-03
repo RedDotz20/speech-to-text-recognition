@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/react';
+import { Stack, StackDivider } from '@chakra-ui/react';
 
 import LanguageSelector from './LanguageSelector';
 import TranscriptStyles from './TranscriptStyles';
@@ -6,7 +6,10 @@ import SpeechControls from './SpeechControls';
 
 export default function MainControls() {
 	return (
-		<Box
+		<Stack
+			divider={<StackDivider borderColor="gray.600" />}
+			direction="column"
+			justifyContent="space-between"
 			py={3}
 			px={4}
 			bg="#ffffff"
@@ -17,6 +20,6 @@ export default function MainControls() {
 			<LanguageSelector />
 			<TranscriptStyles />
 			<SpeechControls />
-		</Box>
+		</Stack>
 	);
 }

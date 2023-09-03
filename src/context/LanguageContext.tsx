@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react';
 import { languageTypes } from '../types/languageTypes';
 import { LanguageContextType } from '../types/languageContextType';
+import { Flex } from '@chakra-ui/react';
 
 type ProviderProps = { children: React.ReactNode };
 
@@ -23,9 +24,18 @@ export default function LanguageContextProvider({ children }: ProviderProps) {
 
 	return (
 		<LanguageContext.Provider value={{ currentLanguage, changeLanguage }}>
-			<div className="flex justify-center gap-2 p-2 mx-auto border-4 rounded-xl min-h-[400px]">
+			<Flex
+				justifyContent="center"
+				gap={2}
+				p={2}
+				mx="auto"
+				borderWidth={4}
+				rounded="xl"
+				minH="390px"
+				maxH="390px"
+			>
 				{children}
-			</div>
+			</Flex>
 		</LanguageContext.Provider>
 	);
 }

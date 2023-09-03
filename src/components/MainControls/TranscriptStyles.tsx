@@ -1,31 +1,31 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { HStack, Icon, Select, Stack, Text, VStack } from '@chakra-ui/react';
 import { AiOutlineFontSize } from 'react-icons/Ai';
 
+import { TranscriptContext } from '../../context/TranscriptContext';
+import { SpeechRecognitionContext } from '../../context/SpeechRecognitionContext';
+
 export default function TranscriptStyles() {
-	const [selectedFontWeight, setSelectedFontWeight] = useState(400);
-	const [selectedFontSize, setSelectedFontSize] = useState(12);
-
-	const handleFontWeightChange = (event: any) => {
-		setSelectedFontWeight(event.target.value);
-	};
-
-	const handleFontSizeChange = (event: any) => {
-		setSelectedFontSize(event.target.value);
-	};
+	const { listening } = useContext<any>(SpeechRecognitionContext);
+	const {
+		selectedFontWeight,
+		selectedFontSize,
+		handleFontSizeChange,
+		handleFontWeightChange,
+	} = useContext(TranscriptContext);
 
 	const customStyles = {
 		fontWeight: [
+			{ intensity: 'Thin', value: 300 },
 			{ intensity: 'Normal', value: 400 },
 			{ intensity: 'Medium', value: 500 },
-			{ intensity: 'Semibold', value: 600 },
-			{ intensity: 'Bold', value: 700 },
+			{ intensity: 'Bold', value: 600 },
 		],
 		fontSize: [
-			{ size: 'Small', value: 12 },
-			{ size: 'Medium', value: 14 },
-			{ size: 'Large', value: 16 },
-			{ size: 'Huge', value: 18 },
+			{ size: 'Small', value: 'sm' },
+			{ size: 'Medium', value: 'md' },
+			{ size: 'Large', value: 'lg' },
+			{ size: 'Huge', value: 'xl' },
 		],
 	};
 
@@ -59,6 +59,7 @@ export default function TranscriptStyles() {
 						size="sm"
 						value={selectedFontWeight}
 						onChange={handleFontWeightChange}
+						isDisabled={listening}
 					>
 						{customStyles.fontWeight.map((weight) => {
 							return (
@@ -89,6 +90,7 @@ export default function TranscriptStyles() {
 						size="sm"
 						value={selectedFontSize}
 						onChange={handleFontSizeChange}
+						isDisabled={listening}
 					>
 						{customStyles.fontSize.map((font) => {
 							return (
