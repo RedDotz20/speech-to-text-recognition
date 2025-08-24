@@ -1,31 +1,44 @@
-import '@babel/polyfill';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-import './index.css';
+import "@babel/polyfill";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
 
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import ErrorBoundery from './ErrorBoundery.tsx';
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import ErrorBoundery from "./ErrorBoundery.tsx";
+
+// Initialize speech recognition
+if (typeof window !== "undefined") {
+	// Set up speech recognition polyfills if needed
+	if (
+		!("webkitSpeechRecognition" in window) &&
+		!("SpeechRecognition" in window)
+	) {
+		console.warn("Speech recognition not supported in this browser");
+	} else {
+		console.log("Speech recognition is supported");
+	}
+}
 
 const customTheme = extendTheme({
 	fonts: {
-		body: 'Roboto, sans-serif',
-		heading: 'Roboto, sans-serif',
+		body: "Roboto, sans-serif",
+		heading: "Roboto, sans-serif",
 	},
 	styles: {
 		global: {
-			'::-webkit-scrollbar': {
-				width: '6px',
-				height: '6px',
+			"::-webkit-scrollbar": {
+				width: "6px",
+				height: "6px",
 			},
-			'::-webkit-scrollbar-thumb': {
-				background: 'gray',
+			"::-webkit-scrollbar-thumb": {
+				background: "gray",
 			},
 		},
 	},
 });
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 	<React.StrictMode>
 		<ErrorBoundery
 			fallback={<h1 className="errorBoundery">An Error Has Occured</h1>}

@@ -1,9 +1,9 @@
-import { useContext } from 'react';
-import { HStack, Icon, Select, Stack, Text, VStack } from '@chakra-ui/react';
-import { AiOutlineFontSize } from 'react-icons/ai';
+import { useContext } from "react";
+import { HStack, Icon, Select, Stack, Text, VStack } from "@chakra-ui/react";
+import { AiOutlineFontSize } from "react-icons/ai";
 
-import { TranscriptContext } from '../../context/TranscriptContext';
-import { SpeechRecognitionContext } from '../../context/SpeechRecognitionContext';
+import { TranscriptContext } from "../../context/TranscriptContext";
+import { SpeechRecognitionContext } from "../../context/SpeechRecognitionContext";
 
 export default function TranscriptStyles() {
 	const { listening } = useContext<any>(SpeechRecognitionContext);
@@ -16,16 +16,16 @@ export default function TranscriptStyles() {
 
 	const customStyles = {
 		fontWeight: [
-			{ intensity: 'Thin', value: 300 },
-			{ intensity: 'Normal', value: 400 },
-			{ intensity: 'Medium', value: 500 },
-			{ intensity: 'Bold', value: 600 },
+			{ intensity: "Thin", value: 300 },
+			{ intensity: "Normal", value: 400 },
+			{ intensity: "Medium", value: 500 },
+			{ intensity: "Bold", value: 600 },
 		],
 		fontSize: [
-			{ size: 'Small', value: 'sm' },
-			{ size: 'Medium', value: 'md' },
-			{ size: 'Large', value: 'lg' },
-			{ size: 'Huge', value: 'xl' },
+			{ size: "Small", value: "sm" },
+			{ size: "Medium", value: "md" },
+			{ size: "Large", value: "lg" },
+			{ size: "Huge", value: "xl" },
 		],
 	};
 

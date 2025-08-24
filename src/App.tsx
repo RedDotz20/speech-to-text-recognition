@@ -1,19 +1,33 @@
-import { useSpeechRecognition } from 'react-speech-recognition';
-import { Flex, Grid, Heading, Icon } from '@chakra-ui/react';
-import { PiChatsCircleBold, PiMicrophone } from 'react-icons/pi';
+import { useSpeechRecognition } from "react-speech-recognition";
+import { Flex, Grid, Heading, Icon } from "@chakra-ui/react";
+import { PiChatsCircleBold, PiMicrophone } from "react-icons/pi";
 
-import SpeechRecognitionProvider from './context/SpeechRecognitionContext';
-import LanguageContextProvider from './context/LanguageContext';
-import TranscriptContextProvider from './context/TranscriptContext';
+import SpeechRecognitionProvider from "./context/SpeechRecognitionContext";
+import LanguageContextProvider from "./context/LanguageContext";
+import TranscriptContextProvider from "./context/TranscriptContext";
 
-import MainControls from './components/MainControls';
-import Transcription from './components/Transcription';
+import MainControls from "./components/MainControls";
+import Transcription from "./components/Transcription";
+import SpeechRecognitionTroubleshoot from "./components/SpeechRecognitionTroubleshoot";
+import DebugPanel from "./components/DebugPanel";
+import SimpleSpeechTest from "./components/SimpleSpeechTest";
 
 export default function App() {
 	const { browserSupportsSpeechRecognition } = useSpeechRecognition();
 
 	if (!browserSupportsSpeechRecognition) {
-		return <ErrorHeading />;
+		return (
+			<Flex
+				as="main"
+				direction="column"
+				alignItems="center"
+				justifyContent="center"
+				minH="100vh"
+			>
+				<ErrorHeading />
+				<SpeechRecognitionTroubleshoot />
+			</Flex>
+		);
 	}
 
 	return (
@@ -29,8 +43,10 @@ export default function App() {
 			<SpeechRecognitionProvider>
 				<LanguageContextProvider>
 					<TranscriptContextProvider>
+						<SimpleSpeechTest />
 						<Transcription />
 						<MainControls />
+						<DebugPanel />
 					</TranscriptContextProvider>
 				</LanguageContextProvider>
 			</SpeechRecognitionProvider>
@@ -66,7 +82,8 @@ function ErrorHeading() {
 		<Grid
 			placeItems="center"
 			textAlign="center"
-			height="100vh"
+			height="auto"
+			mb={8}
 		>
 			<Heading
 				fontSize="4xl"

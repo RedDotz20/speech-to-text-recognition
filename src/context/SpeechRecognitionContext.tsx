@@ -1,6 +1,6 @@
-import React, { createContext, useState, useMemo } from 'react';
-import { useSpeechRecognition } from 'react-speech-recognition';
-import copy from 'clipboard-copy';
+import React, { createContext, useState, useMemo } from "react";
+import { useSpeechRecognition } from "react-speech-recognition";
+import copy from "clipboard-copy";
 
 type ProviderProps = { children: React.ReactNode };
 
@@ -10,16 +10,28 @@ export default function SpeechRecognitionProvider({ children }: ProviderProps) {
 	const { listening, transcript, resetTranscript } = useSpeechRecognition();
 	const [isCopiedToClipboard, setIsCopiedToClipboard] = useState(false);
 
-	const handleCopyToClipboard = async (textToCopy: string) => {
-		try {
-			await copy(textToCopy);
-			setIsCopiedToClipboard(true);
-		} catch (error) {
-			console.error('Copy to clipboard failed:', error);
-		}
-	};
+	// Debug logging
+	console.log("📝 SpeechRecognition Context Values:");
+	console.log("  - listening:", listening);
+	console.log("  - transcript length:", transcript.length);
+	console.log("  - transcript:", transcript.substring(0, 50) + "...");
 
-	const resetClipboard = () => setIsCopiedToClipboard(false);
+	const handleCopyToClipboard = React.useCallback(
+		async (textToCopy: string) => {
+			try {
+				await copy(textToCopy);
+				setIsCopiedToClipboard(true);
+			} catch (error) {
+				console.error("Copy to clipboard failed:", error);
+			}
+		},
+		[]
+	);
+
+	const resetClipboard = React.useCallback(
+		() => setIsCopiedToClipboard(false),
+		[]
+	);
 
 	const speechRecogContextValue = useMemo(
 		() => ({
