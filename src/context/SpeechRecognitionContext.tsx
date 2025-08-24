@@ -1,10 +1,13 @@
 import React, { createContext, useState, useMemo } from "react";
 import { useSpeechRecognition } from "react-speech-recognition";
 import copy from "clipboard-copy";
+import { SpeechRecognitionContextType } from "../types/speechRecognitionContextType";
 
 type ProviderProps = { children: React.ReactNode };
 
-export const SpeechRecognitionContext = createContext<any>(undefined);
+export const SpeechRecognitionContext = createContext<
+	SpeechRecognitionContextType | undefined
+>(undefined);
 
 export default function SpeechRecognitionProvider({ children }: ProviderProps) {
 	const { listening, transcript, resetTranscript } = useSpeechRecognition();

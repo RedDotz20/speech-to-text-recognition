@@ -1,18 +1,17 @@
-import { useContext } from "react";
 import { HStack, Icon, Select, Stack, Text, VStack } from "@chakra-ui/react";
 import { AiOutlineFontSize } from "react-icons/ai";
 
-import { TranscriptContext } from "../../context/TranscriptContext";
-import { SpeechRecognitionContext } from "../../context/SpeechRecognitionContext";
+import { useTranscriptContext } from "../../hooks/useTranscriptContext";
+import { useSpeechRecognitionContext } from "../../hooks/useSpeechRecognitionContext";
 
 export default function TranscriptStyles() {
-	const { listening } = useContext<any>(SpeechRecognitionContext);
+	const { listening } = useSpeechRecognitionContext();
 	const {
 		selectedFontWeight,
 		selectedFontSize,
 		handleFontSizeChange,
 		handleFontWeightChange,
-	} = useContext(TranscriptContext);
+	} = useTranscriptContext();
 
 	const customStyles = {
 		fontWeight: [

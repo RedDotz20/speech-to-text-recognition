@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import SpeechRecognition from "react-speech-recognition";
 import {
 	HStack,
@@ -15,14 +15,13 @@ import { RxReset } from "react-icons/rx";
 import { AiFillControl } from "react-icons/ai";
 import { IoPlay, IoStop } from "react-icons/io5";
 
-import { LanguageContext } from "../../context/LanguageContext";
-import { SpeechRecognitionContext } from "../../context/SpeechRecognitionContext";
+import { useLanguageContext } from "../../hooks/useLanguageContext";
+import { useSpeechRecognitionContext } from "../../hooks/useSpeechRecognitionContext";
 
 export default function SpeechControls() {
-	const { currentLanguage } = useContext<any>(LanguageContext);
-	const { listening, resetTranscript, resetClipboard } = useContext<any>(
-		SpeechRecognitionContext
-	);
+	const { currentLanguage } = useLanguageContext();
+	const { listening, resetTranscript, resetClipboard } =
+		useSpeechRecognitionContext();
 	const [hasPermission, setHasPermission] = useState<boolean | null>(null);
 	const toast = useToast();
 

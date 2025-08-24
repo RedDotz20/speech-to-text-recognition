@@ -1,20 +1,18 @@
-import { useContext } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Button, Box, Text, Stack, Flex, Icon } from '@chakra-ui/react';
+import { AnimatePresence, motion } from "framer-motion";
+import { Button, Box, Text, Stack, Flex, Icon } from "@chakra-ui/react";
 import {
 	PiMicrophone,
 	PiClipboardTextFill,
 	PiPencilSimpleBold,
-} from 'react-icons/pi';
+} from "react-icons/pi";
 
-import { SpeechRecognitionContext } from '../context/SpeechRecognitionContext';
-import { TranscriptContext } from '../context/TranscriptContext';
+import { useSpeechRecognitionContext } from "../hooks/useSpeechRecognitionContext";
+import { useTranscriptContext } from "../hooks/useTranscriptContext";
 
 export default function Transcription() {
 	const { listening, transcript, isCopiedToClipboard, handleCopyToClipboard } =
-		useContext<any>(SpeechRecognitionContext);
-	const { selectedFontWeight, selectedFontSize } =
-		useContext<any>(TranscriptContext);
+		useSpeechRecognitionContext();
+	const { selectedFontWeight, selectedFontSize } = useTranscriptContext();
 
 	return (
 		<Box
@@ -51,7 +49,7 @@ export default function Transcription() {
 					<AnimatePresence mode="wait">
 						{listening && (
 							<motion.div
-								style={{ backgroundColor: 'green', borderRadius: '8px' }}
+								style={{ backgroundColor: "green", borderRadius: "8px" }}
 								initial="hidden"
 								animate="visible"
 								exit="hidden"
@@ -82,18 +80,18 @@ export default function Transcription() {
 				</Flex>
 
 				<Button
-					colorScheme={isCopiedToClipboard ? 'green' : 'gray'}
-					variant={isCopiedToClipboard ? 'solid' : 'outline'}
+					colorScheme={isCopiedToClipboard ? "green" : "gray"}
+					variant={isCopiedToClipboard ? "solid" : "outline"}
 					ml="auto"
 					px={2}
 					py={1}
 					fontSize={12}
 					leftIcon={<PiClipboardTextFill />}
-					isDisabled={listening || transcript === ''}
+					isDisabled={listening || transcript === ""}
 					onClick={() => handleCopyToClipboard(transcript)}
 					size="xs"
 				>
-					{isCopiedToClipboard ? 'Copied!' : 'Copy to Clipboard'}
+					{isCopiedToClipboard ? "Copied!" : "Copy to Clipboard"}
 				</Button>
 			</Stack>
 

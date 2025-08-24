@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import {
 	Button,
 	Flex,
@@ -11,17 +10,17 @@ import {
 	MenuList,
 	Stack,
 	Text,
-} from '@chakra-ui/react';
-import { PiGlobeLight } from 'react-icons/pi';
-import { MdKeyboardArrowDown } from 'react-icons/md';
+} from "@chakra-ui/react";
+import { PiGlobeLight } from "react-icons/pi";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
-import { LanguageContext } from '../../context/LanguageContext';
-import { SpeechRecognitionContext } from '../../context/SpeechRecognitionContext';
-import { languageSupported } from '../../constants/languageSupport';
+import { useLanguageContext } from "../../hooks/useLanguageContext";
+import { useSpeechRecognitionContext } from "../../hooks/useSpeechRecognitionContext";
+import { languageSupported } from "../../constants/languageSupport";
 
 export default function LanguageSelector() {
-	const { currentLanguage, changeLanguage } = useContext<any>(LanguageContext);
-	const { listening } = useContext<any>(SpeechRecognitionContext);
+	const { currentLanguage, changeLanguage } = useLanguageContext();
+	const { listening } = useSpeechRecognitionContext();
 
 	const findCurrentLanguageIndex = (languageValue: string) => {
 		return languageSupported.findIndex(

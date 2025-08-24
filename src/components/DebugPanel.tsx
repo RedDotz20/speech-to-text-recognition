@@ -1,11 +1,6 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Box, Button, Text, VStack, Alert, AlertIcon } from "@chakra-ui/react";
-import { SpeechRecognitionContext } from "../context/SpeechRecognitionContext";
-
-type SpeechRecognitionContextType = {
-	listening: boolean;
-	transcript: string;
-};
+import { useSpeechRecognitionContext } from "../hooks/useSpeechRecognitionContext";
 
 type DebugInfo = {
 	browserSupport?: boolean;
@@ -16,9 +11,7 @@ type DebugInfo = {
 };
 
 export default function DebugPanel() {
-	const { listening, transcript } = useContext<SpeechRecognitionContextType>(
-		SpeechRecognitionContext
-	);
+	const { listening, transcript } = useSpeechRecognitionContext();
 
 	const [debugInfo, setDebugInfo] = useState<DebugInfo>({});
 

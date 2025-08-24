@@ -1,22 +1,25 @@
 import { createContext, useState, useMemo, useCallback } from "react";
+import { TranscriptContextType } from "../types/transcriptContextType";
 
 type ProviderProps = { children: React.ReactNode };
 
-export const TranscriptContext = createContext<any>(undefined);
+export const TranscriptContext = createContext<
+	TranscriptContextType | undefined
+>(undefined);
 
 export default function TranscriptContextProvider({ children }: ProviderProps) {
 	const [selectedFontWeight, setSelectedFontWeight] = useState(400);
 	const [selectedFontSize, setSelectedFontSize] = useState("sm");
 
 	const handleFontWeightChange = useCallback(
-		(event: React.ChangeEvent<HTMLInputElement>) => {
+		(event: React.ChangeEvent<HTMLSelectElement>) => {
 			setSelectedFontWeight(Number(event.target.value));
 		},
 		[]
 	);
 
 	const handleFontSizeChange = useCallback(
-		(event: React.ChangeEvent<HTMLInputElement>) => {
+		(event: React.ChangeEvent<HTMLSelectElement>) => {
 			setSelectedFontSize(event.target.value);
 		},
 		[]
